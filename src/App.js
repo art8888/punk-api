@@ -2,8 +2,9 @@ import React from "react";
 import { PulseLoader } from "react-spinners";
 
 import Layout from "./components/layout/Layout";
-import Get from "./services/rest/Get";
+import { Get } from "./services/rest/Get";
 
+const title = "Punk Beer"
 const REST_URL = "https://api.punkapi.com/v2/beers";
 
 const App = () => {
@@ -11,13 +12,14 @@ const App = () => {
   const [data, setData] = React.useState([])
 
   React.useEffect(() => {
-
     const fetchList = async () => {
-    setLoading(true);
+
+      setLoading(true);
+
       const response = await Get(REST_URL);
       const data = await response;
+      
       setData(data)
-      console.log(data);
       setLoading(false);
     };
     fetchList();
@@ -25,8 +27,8 @@ const App = () => {
  
   return (
     <div className="beer-app">
-      <h1>Punk API</h1>
-      {isLoading ? <PulseLoader /> : <Layout list={data} />}
+      <h1>{title}</h1>
+      {isLoading ? <PulseLoader /> : <Layout data={data} />}
     </div>
   );
 }

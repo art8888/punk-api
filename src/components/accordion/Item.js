@@ -1,12 +1,12 @@
-import { useState } from "react";
+import React from "react";
 
-const Item = ({ title, volume, content, image }) => {
-    const [isActive, setIsActive] = useState(false);
+export const Item = ({ title, volume, content, image }) => {
+    const [isActive, setIsActive] = React.useState(false);
   
-      return (
+    return (
           <div className="accordion-item">
               <div className="accordion-title" onClick={() => setIsActive(!isActive)}>
-                  <div>{title}</div>
+                  <div>{title} ({volume}%)</div>
                   <div>{isActive ? '-' : '+' }</div>
               </div>
               {isActive && 
@@ -14,10 +14,12 @@ const Item = ({ title, volume, content, image }) => {
                   <h3>Alcohol volume: {volume}</h3>
                  {content}
                  <hr />
-                 <img src={image} alt={title} />
+                {image && 
+                    <figure>
+                        <img src={image} alt={title} />
+                    </figure>
+                }
               </div>}
           </div>
-      );
-  }
-  
-  export default Item;
+    );
+}

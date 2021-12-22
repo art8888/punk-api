@@ -1,13 +1,15 @@
 import React from "react";
 
-import Item from "./Item";
+import { Item } from "./Item";
 
 const Accordion = ({ list }) => {
 
     return (
-        <div className="accordion">
+        <div className="row">
             {list.map(({ id, name, abv, description, image_url}) => (
-                <Item key={id} title={name} volume={abv} content={description} image={image_url}/>
+                <div className="column">
+                    <Item key={id} title={name} volume={abv} content={description} image={image_url}/>
+                </div>
             ))}
         </div>
     );
