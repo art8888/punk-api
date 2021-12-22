@@ -1,6 +1,6 @@
 # Punk Beer API
 
-Simple React APP to display data from Punk Beer by using REST service.
+Simple React APP to display data from Punk Beer API by using REST - https://api.punkapi.com/v2/beers.
 
 
 ## Packages:
