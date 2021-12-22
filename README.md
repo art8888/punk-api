@@ -13,7 +13,7 @@ Simple React APP to display data from Punk Beer by using REST service.
 * Custom _grid_ layout
 * _Shine_ effect on image hover 
 
-## APP Folder Structure:
+## Folder Structure:
 * `Component/` - Where all components are exist. Each component should have own folder
 * `Services/` - Work with services for handling/passing data _GET/POST/PUT/REQUEST..._
 * `style.css` - main styling file
