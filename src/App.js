@@ -1,29 +1,34 @@
-import React, { useState } from "react";
+import React from "react";
+import { PulseLoader } from "react-spinners";
+
+import Layout from "./components/layout/Layout";
+import Get from "./services/rest/Get";
+
+const REST_URL = "https://api.punkapi.com/v2/beers";
 
 const App = () => {
-  
-  const accordionData = {
-    title: 'Section 1',
-    content: `Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.`
-  };
+  const [isLoading, setLoading] = React.useState(false);
+  const [data, setData] = React.useState([])
 
-  const { title, content } = accordionData;
-  const [isActive, setIsActive] = useState(false);
+  React.useEffect(() => {
 
+    const fetchList = async () => {
+    setLoading(true);
+      const response = await Get(REST_URL);
+      const data = await response;
+      setData(data)
+      console.log(data);
+      setLoading(false);
+    };
+    fetchList();
+  }, []);
+ 
   return (
-    <React.Fragment>
-      <h1>PUNK API</h1>
-      <div className="accordion">
-        <div className="accordion-item">
-          <div className="accordion-title" onClick={() => setIsActive(!isActive)}>
-            <div>{title}</div>
-            <div>{isActive ? "-" : "+" }</div>
-          </div>
-          {isActive && <div className="accordion-content">{content}</div>}
-        </div>
-      </div>
-    </React.Fragment>
-  )
+    <div className="beer-app">
+      <h1>Punk API</h1>
+      {isLoading ? <PulseLoader /> : <Layout list={data} />}
+    </div>
+  );
 }
 
 export default App;

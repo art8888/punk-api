@@ -1,12 +1,14 @@
-import { useState } from "react";
+import React from "react";
 
-const Accordion = ({ title, content }) => {
+import Item from "./Item";
+
+const Accordion = ({ list }) => {
 
     return (
-        <div className="accordion-item">
-            <div className="accordion-title" onClick={() => setIsActive(!isActive)}>
-                
-            </div>
+        <div className="accordion">
+            {list.map(({ id, name, abv, description, image_url}) => (
+                <Item key={id} title={name} volume={abv} content={description} image={image_url}/>
+            ))}
         </div>
     );
 }
